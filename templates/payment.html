@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive X</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='payment.css') }}">
+</head>
+<body>
+    <div class="container">
+        <from action="{{ url_for('payment') }}" method="post">
+            <div class="row">
+                <div class = "column">
+                    <h3 class="title">Billing Address</h3>
+                    <div class="input-box">
+                        <span>Full Name :</span>
+                        <input type="text" name="name" placeholder="Enter your name">
+                    </div>
+                    <div class="input-box">
+                        <span>Email :</span>
+                        <input type="email" name="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="input-box">
+                        <span>Address : </span>
+                        <input type="text" name="name" placeholder="Parmanent Address">
+                    </div>
+                    <div class="input-box">
+                        <span>City :</span>
+                        <input type="text" name="name" placeholder="Dhaka">
+                    </div>
+                    <div class="flex">
+                        <div class="input-box">
+                            <span>State :</span>
+                            <input type="text" name="name" placeholder="Bangladesh">
+                        </div>
+                        <div class="input-box">
+                            <span>Zip Code :</span>
+                            <input type="number" name="name" placeholder="6100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "column">
+                    <h3 class="title">Payment</h3>
+                    <div class="input-box">
+                        <span>Account Accepted :</span>
+                        <div class="methods">
+                            <div class="method" id="bkash">
+                                <img src="{{ url_for('static', filename='image/bkash.jpg') }}">
+                            </div>
+                            <div class="method" id="nagad">
+                                <img src="{{ url_for('static', filename='image/nagad.jpg') }}">
+                            </div>
+                            <div class="method" id="rocket">
+                                <img src="{{ url_for('static', filename='image/rocket.jpg') }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <span>Account Holder Name :</span>
+                        <input type="text" name="email" placeholder="Enter your name">
+                    </div>
+                    <div class="input-box">
+                        <span>Account Number : </span>
+                        <input type="number" name="name" placeholder="01XXXXXXXXX">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="ride-info" class="ride-info">
+            <h3>Ride Details</h3>
+            <div class="ride-summary">
+                <div class="ride-details">
+                    <p><strong>Car Name:</strong> {{ car_name }}</p>
+                    <p><strong>Number Plate:</strong> <!-- Optional field --></p>
+                    <p><strong>From:</strong> {{ pickup_location }}</p>
+                    <p><strong>To:</strong> {{ dropoff_location }}</p>
+                    <p><strong>Price:</strong> {{ price }}</p>
+                    <p><strong>Booking Time:</strong> {{ booking_time }}</p>
+                </div>
+                <div class="img">
+                    <img src="{{ url_for('static', filename='image/' + image_url) }}" 
+                         alt="{{ car_name }}" class="ride-img">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const methods = document.querySelectorAll('.input-box .method');
+
+        methods.forEach((method) => {
+            method.addEventListener('click', () => {
+                methods.forEach((m) => m.classList.remove('selected'));
+                method.classList.add('selected');
+            });
+        });
+    });
+
+</script>

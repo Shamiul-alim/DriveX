@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root {
+    --linear-grad: linear-gradient(to right, #141E30, #243B55);
+    --grad-clr1: #141E30;
+    --grad-clr2: #243B55;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f6f5f7;
+    color: #333;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--grad-clr2);
+    padding :25px;
+}
+.container from{
+    width: 700px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+from .row{
+    display: flex;
+    gap:15px;
+    flex-wrap: wrap;
+}
+
+.row .column{
+    flex :1 1 250px;
+}
+
+.column .title{
+    font-size: 20px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+
+}
+
+.column .input-box{
+    margin: 15px 0;
+}
+.input-box span{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input-box input{
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.column .flex{
+    display: flex;
+    gap: 15px;
+}
+.flex .input-box{
+    margin-top: 5px;
+
+}
+
+from .btn{
+    width: 100%;
+    padding: 12px;
+    background: var(--grad-clr1);
+    border: none;
+    color:#ccc;
+    border-radius: 6px;
+    opacity: 90%;
+    font-size: 15px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: .5s;
+}
+from .btn:hover{
+    background-color:var(--grad-clr2);
+    color: #ccc
+}
+
+.input-box .methods{
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+}
+.input-box .method{
+    width: 90px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.input-box .method img{
+    width:85px;
+    height: 35px;
+    
+}
+
+.input-box .method.selected{
+    background-color: #ececec;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+
+.ride-info {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding :25px;
+}
+
+
+.ride-info h3{
+    font-size: 20px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.ride-info .ride-summary{
+    padding-top: 10px;
+}
+
+.ride-info img {
+    padding-top: 10px;
+    max-width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.ride-summary p {
+    margin: 5px 0;
+}
