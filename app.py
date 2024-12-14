@@ -262,11 +262,29 @@ def logout():
     flash('You have been logged out successfully.', 'info')
     return redirect(url_for('home'))
 
+@app.route('/select_car', methods=['POST'])
+def select_car():
+    # Get the car details from the form or request
+    car_name = request.form.get('carName')  # Replace with actual form field name
+    car_image = request.form.get('carImage')  # Replace with actual form field name
+
+    # Store car details in session
+    session['car_name'] = car_name
+    session['car_image'] = car_image
+
+    # Redirect to payment page
+    return redirect(url_for('payment'))
+
 
 @app.route('/payment')
 def payment():
+    # Retrieve car details from session
     image_url = "example_image.jpg" 
-    return render_template('payment.html', image_url=image_url)
+    car_name = session.get('car_name', 'Unknown Car')
+    car_image = session.get('car_image', 'default.jpg')  # Default image if not found
+
+    # Pass data to the template
+    return render_template('payment.html', car_name=car_name, car_image=car_image, image_url=image_url)
 
 
 if __name__ == '__main__':

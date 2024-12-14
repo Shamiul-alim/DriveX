@@ -85,7 +85,11 @@
                 </div>
                 {% endfor %}            
             {% endif %}
-            <button id="request-ride" onclick="window.location.href='/payment'">Access Moto</button>
+            <form action="/select_car" method="post">
+                <input type="hidden" name="carName" value="Toyota Corolla">
+                <input type="hidden" name="carImage" value="toyota_corolla.jpg">
+                <button type="submit">Select This Car</button>
+            </form>
         </div>
 
 
@@ -112,7 +116,11 @@
                 </div> 
                 {% endfor %}           
             {% endif %}
-            <button id="request-ride" onclick="window.location.href='/payment'" >Access Moto</button>
+            <form action="/select_car" method="post">
+                <input type="hidden" name="carName" value="Toyota Corolla">
+                <input type="hidden" name="carImage" value="toyota_corolla.jpg">
+                <button type="submit">Select This Car</button>
+            </form>
 
         </div>
 
@@ -486,6 +494,7 @@
                 option.classList.add('selected');
             });
         });
+        
         
 
     </script>
