@@ -291,6 +291,15 @@ def payment():
     # Pass data to the template
     return render_template('payment.html', car_name=car_name, car_image=car_image, image_url=image_url)
 
+@app.route('/init_db')
+def init_db():
+    with app.app_context():
+        with open('drivex.sql', 'r') as f:
+            sql = f.read()
+        db.session.execute(sql)
+        db.session.commit()
+    return "Database initialized!"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
