@@ -7,10 +7,15 @@ from urllib.parse import urlparse
 from flask import jsonify, request
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+# Secret key from env (fallback to "dev-secret" if not set)
+app.secret_key = os.getenv('SECRET_KEY', 'dev-secret')
 
-# Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:your_password@localhost/drivex'
+# Database config: use Railway env var, fallback to local SQLite for testing
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+    'SQLALCHEMY_DATABASE_URI',
+    'sqlite:///local.db'  # fallback if env var is not set
+)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
