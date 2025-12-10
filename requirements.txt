@@ -1,5 +1,5 @@
 flask
-flask_sqlalchemy
-flask_login
-pymysql
+pymongo
+werkzeug
 python-dotenv
+requests

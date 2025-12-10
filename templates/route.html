@@ -69,7 +69,7 @@
             <h1>Choose a ride</h1>
             {% if cars_point_1 %}
                 {% for car in cars_point_1 %}
-                <div class="ride-option">
+                <div class="ride-option" data-car-id="{{ car._id }}" data-car-name="{{ car.name }}" data-plate="{{ car.plate_num }}" data-image="{{ car.image_url }}">
                     <div class="ride-type">
                         <img src="{{ url_for('static', filename='image/' + (car.image_url if car.image_url else 'default.jpg')) }}" alt="Drive X Image" id="{{ car.name }}">
                         <div class="details">
@@ -77,19 +77,24 @@
                             <p>{{ car.description }}</p>
                         </div>
                         <div class="ride-price">
-                            <span class="original" id="price-{{ car.name | lower }}">
-                                {{ 'BDT ' + ('%.2f' % car.price) }}
+                            <span class="original" id="price-{{ car.name | lower | replace(' ', '-') }}">
+                                <span class="price-per-km">BDT {{ "%.0f"|format(car.price_per_km) }}/km</span>
+                                <span class="estimated-price" style="display: none;">BDT 0.00</span>
                             </span>
                         </div>
                     </div>
+                    <form action="/select_car" method="post" class="car-select-form">
+                        <input type="hidden" name="car_id" value="{{ car._id }}">
+                        <input type="hidden" name="carName" value="{{ car.name }}">
+                        <input type="hidden" name="carImage" value="{{ car.image_url if car.image_url else 'default.jpg' }}">
+                        <input type="hidden" name="plate_num" value="{{ car.plate_num }}">
+                        <input type="hidden" name="pickup" id="pickup-{{ car._id }}" value="{{ pickup }}">
+                        <input type="hidden" name="dropoff" id="dropoff-{{ car._id }}" value="{{ dropoff }}">
+                        <button type="submit" class="select-car-btn">Select This Car</button>
+                    </form>
                 </div>
                 {% endfor %}            
             {% endif %}
-            <form action="/select_car" method="post">
-                <input type="hidden" name="carName" value="Toyota Corolla">
-                <input type="hidden" name="carImage" value="toyota_corolla.jpg">
-                <button type="submit">Select This Car</button>
-            </form>
         </div>
 
 
@@ -100,27 +105,32 @@
             <h1>Choose a ride</h1>
             {% if cars_point_2 %}
                 {% for car in cars_point_2 %}
-                <div class="ride-option">
+                <div class="ride-option" data-car-id="{{ car._id }}" data-car-name="{{ car.name }}" data-plate="{{ car.plate_num }}" data-image="{{ car.image_url }}">
                     <div class="ride-type">
-                        <img src="{{ url_for('static', filename='image/' + car.image_url) }}" alt="Drive X Image" id="{{ car.name }}">
+                        <img src="{{ url_for('static', filename='image/' + (car.image_url if car.image_url else 'default.jpg')) }}" alt="Drive X Image" id="{{ car.name }}">
                         <div class="details">
                             <h4 id="{{ car.name }}">{{ car.name }}</h4>
                             <p>{{ car.description }}</p>
                         </div>
                         <div class="ride-price">
-                            <span class="original" id="price-{{ car.name | lower }}">
-                                {{ 'BDT ' + ('%.2f' % car.price) }}
+                            <span class="original" id="price-{{ car.name | lower | replace(' ', '-') }}">
+                                <span class="price-per-km">BDT {{ "%.0f"|format(car.price_per_km) }}/km</span>
+                                <span class="estimated-price" style="display: none;">BDT 0.00</span>
                             </span>
                         </div>
                     </div>
+                    <form action="/select_car" method="post" class="car-select-form">
+                        <input type="hidden" name="car_id" value="{{ car._id }}">
+                        <input type="hidden" name="carName" value="{{ car.name }}">
+                        <input type="hidden" name="carImage" value="{{ car.image_url if car.image_url else 'default.jpg' }}">
+                        <input type="hidden" name="plate_num" value="{{ car.plate_num }}">
+                        <input type="hidden" name="pickup" id="pickup-{{ car._id }}" value="{{ pickup }}">
+                        <input type="hidden" name="dropoff" id="dropoff-{{ car._id }}" value="{{ dropoff }}">
+                        <button type="submit" class="select-car-btn">Select This Car</button>
+                    </form>
                 </div> 
                 {% endfor %}           
             {% endif %}
-            <form action="/select_car" method="post">
-                <input type="hidden" name="carName" value="Toyota Corolla">
-                <input type="hidden" name="carImage" value="toyota_corolla.jpg">
-                <button type="submit">Select This Car</button>
-            </form>
 
         </div>
 
@@ -322,41 +332,20 @@
 
         //calculate price
         function updatePrices(distanceInKm) {
-            // Prices for cars in ride-options
-            const prices1 = {
-                corolla: distanceInKm * costPerKm,
-                noah: distanceInKm * costPerKm * 1.1,
-                prado: distanceInKm * costPerKm * 1.3,
-                auris: distanceInKm * costPerKm * 1.5,
-                prius: distanceInKm * costPerKm * 1.6,
-            };
-        
-            // Update prices for ride-options
-            Object.keys(prices1).forEach(car => {
-                const element = document.getElementById(`price-${car.toLowerCase()}`);
-                if (element) {
-                    element.textContent = `BDT ${prices1[car].toFixed(2)}`;
-                } else {
-                    console.warn(`Element with ID price-${car.toLowerCase()} not found.`);
-                }
-            });
-        
-            // Prices for cars in ride-options2
-            const prices2 = {
-                hondaHRV: distanceInKm * costPerKm * 1.2,
-                nissanXTrail: distanceInKm * costPerKm * 1.4,
-                suzukiVitara: distanceInKm * costPerKm * 1.6,
-                toyotaHiace: distanceInKm * costPerKm * 1.8,
-                mercedesBenzGLA: distanceInKm * costPerKm * 2.0,
-            };
-        
-            // Update prices for ride-options2
-            Object.keys(prices2).forEach(car => {
-                const element = document.getElementById(`price-${car.toLowerCase()}`);
-                if (element) {
-                    element.textContent = `BDT ${prices2[car].toFixed(2)}`;
-                } else {
-                    console.warn(`Element with ID price-${car.toLowerCase()} not found.`);
+            // Update prices for all cars based on distance
+            // All cars use base rate of 25tk per km
+            const basePrice = distanceInKm * costPerKm;
+            
+            // Find all price elements and update them
+            document.querySelectorAll('.ride-price .original').forEach(priceElement => {
+                const pricePerKmSpan = priceElement.querySelector('.price-per-km');
+                const estimatedPriceSpan = priceElement.querySelector('.estimated-price');
+                
+                if (pricePerKmSpan && estimatedPriceSpan && distanceInKm > 0) {
+                    // Show estimated price and hide per km
+                    pricePerKmSpan.style.display = 'none';
+                    estimatedPriceSpan.style.display = 'inline';
+                    estimatedPriceSpan.textContent = `BDT ${basePrice.toFixed(2)}`;
                 }
             });
         }
@@ -488,11 +477,48 @@
             }, 100);
         });
 
+        // Handle car selection
         document.querySelectorAll('.ride-option').forEach(option => {
             option.addEventListener('click', () => {
                 document.querySelectorAll('.ride-option').forEach(o => o.classList.remove('selected'));
                 option.classList.add('selected');
+                
+                // Update pickup and dropoff in the form when car is selected
+                const form = option.querySelector('.car-select-form');
+                if (form) {
+                    const pickupInput = form.querySelector('input[name="pickup"]');
+                    const dropoffInput = form.querySelector('input[name="dropoff"]');
+                    const pickupValue = document.getElementById('pickup').value;
+                    const dropoffValue = document.getElementById('dropoff').value;
+                    
+                    if (pickupInput) pickupInput.value = pickupValue;
+                    if (dropoffInput) dropoffInput.value = dropoffValue;
+                }
             });
+            
+            // Also handle form submission
+            const form = option.querySelector('.car-select-form');
+            if (form) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const pickupValue = document.getElementById('pickup').value;
+                        const dropoffValue = document.getElementById('dropoff').value;
+                        const pickupInput = form.querySelector('input[name="pickup"]');
+                        const dropoffInput = form.querySelector('input[name="dropoff"]');
+                        
+                        if (pickupInput) pickupInput.value = pickupValue;
+                        if (dropoffInput) dropoffInput.value = dropoffValue;
+                        
+                        if (!pickupValue || !dropoffValue) {
+                            e.preventDefault();
+                            alert('Please select both pickup and dropoff locations');
+                            return false;
+                        }
+                    });
+                }
+            }
         });
         
         

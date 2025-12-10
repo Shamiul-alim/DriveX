@@ -63,8 +63,13 @@
                     <input type="number" step="0.01" id="price" name="price" required>
                 </div>
                 <div class="form-group">
-                    <label for="pickup_point_id">Pickup Point ID:</label>
-                    <input type="number" id="pickup_point_id" name="pickup_point_id" required>
+                    <label for="pickup_point_id">Pickup Point:</label>
+                    <select id="pickup_point_id" name="pickup_point_id" required>
+                        <option value="">Select a pickup point</option>
+                        {% for point in pickup_points %}
+                        <option value="{{ point._id }}">{{ point.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <button type="submit">Add Car</button>
             </form>
@@ -76,8 +81,8 @@
             <form id="deleteCarForm" method="POST" action="{{ url_for('employee_dashboard') }}">
                 <input type="hidden" name="action" value="delete_car">
                 <div class="form-group">
-                    <label for="car_id">Car ID:</label>
-                    <input type="number" id="car_id" name="car_id" required>
+                    <label for="car_id">Car ID (MongoDB ObjectId):</label>
+                    <input type="text" id="car_id" name="car_id" required placeholder="e.g., 507f1f77bcf86cd799439011">
                 </div>
                 <button type="submit">Delete Car</button>
             </form>
@@ -135,7 +140,7 @@
                         <td>{{ car.model }}</td>
                         <td>{{ car.capacity }}</td>
                         <td>{{ car.color }}</td>
-                        <td>{{ car.pickup_point_id }}</td>
+                        <td>{{ car.pickup_point_name if car.pickup_point_name else car.pickup_point_id }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

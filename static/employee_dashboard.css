@@ -140,3 +140,156 @@ table th, table td {
 table th {
     background-color: #f4f4f4;
 }
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    header nav {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul h1 {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    nav ul p {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li {
+        margin: 5px;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    form {
+        padding: 12px;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    table th,
+    table td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 15px;
+    }
+    
+    header nav {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 10px;
+    }
+    
+    main {
+        padding: 10px;
+    }
+    
+    form {
+        padding: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    input,
+    textarea,
+    select {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+    
+    table th,
+    table td {
+        padding: 6px;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+    
+    nav ul p {
+        font-size: 16px;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    input,
+    textarea,
+    select {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    button {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    table {
+        font-size: 11px;
+    }
+    
+    table th,
+    table td {
+        padding: 5px;
+        min-width: 70px;
+    }
+    
+    label {
+        font-size: 14px;
+    }
+}

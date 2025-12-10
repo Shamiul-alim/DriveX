@@ -545,3 +545,154 @@ footer {
 .footer-bottom-links a:hover {
     color: #ddd;
 }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .top-header {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    
+    .main-content {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+    
+    .black-bar {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    
+    .footer-container {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+}
+
+@media (max-width: 968px) {
+    .top-header {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .nav-bar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .main-content {
+        flex-direction: column;
+        margin-left: 20px;
+        margin-right: 20px;
+        gap: 2rem;
+    }
+    
+    .intro {
+        width: 100%;
+    }
+    
+    #image {
+        width: 100%;
+    }
+    
+    .black-bar {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .footer-container {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-bar {
+        padding: 10px 15px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .right-options {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .black-bar-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .options a {
+        margin-left: 0;
+    }
+    
+    .main-content {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .intro h1 {
+        font-size: 1.8rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    #floating-window {
+        width: 100%;
+        right: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 20px;
+    }
+    
+    .nav-links .nav-link-a {
+        font-size: 12px;
+        margin: 0 5px;
+    }
+    
+    .black-bar {
+        padding: 10px 15px;
+    }
+    
+    .black-bar-content p {
+        font-size: 16px;
+    }
+    
+    .intro h1 {
+        font-size: 1.5rem;
+    }
+    
+    input {
+        padding: 0.4rem;
+        font-size: 14px;
+    }
+    
+    button {
+        padding: 0.6rem 1rem;
+        font-size: 14px;
+    }
+}

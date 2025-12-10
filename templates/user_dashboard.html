@@ -50,9 +50,9 @@
                             <div class="profile-icon">👤</div>
                         </div>
                         <div class="floating-buttons">
-                            <button>Help</button>
-                            <button>Wallet</button>
-                            <button>Activity</button>
+                            <button onclick="window.location.href='{{ url_for('help') }}'">Help</button>
+                            <button onclick="window.location.href='{{ url_for('wallet') }}'">Wallet</button>
+                            <button onclick="window.location.href='{{ url_for('activity') }}'">Activity</button>
                         </div>
                         <hr />
                         <ul class="menu-options">
@@ -74,8 +74,8 @@
                     <p id="username">{{ username }}</p>
                 </div>
                 <div class="options">
-                    <a href="#">Wallet</a>
-                    <a href="#">Receipts</a>
+                    <a href="{{ url_for('wallet') }}">Wallet</a>
+                    <a href="{{ url_for('activity') }}">Activity</a>
                     <a href="#">Account</a>
                 </div>
             </div>
