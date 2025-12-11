@@ -74,7 +74,13 @@
                         <img src="{{ url_for('static', filename='image/' + (car.image_url if car.image_url else 'default.jpg')) }}" alt="Drive X Image" id="{{ car.name }}">
                         <div class="details">
                             <h4 id="{{ car.name }}">{{ car.name }}</h4>
-                            <p>{{ car.description }}</p>
+                            <p>{% set description_words = car.description.split(' ') %}
+                                {% if description_words|length > 4 %}
+                                {{ description_words[4:]|join(' ') }}...
+                                {% else %}
+                                {{ car.description }}
+                                {% endif %}
+                            </p>
                         </div>
                         <div class="ride-price">
                             <span class="original" id="price-{{ car.name | lower | replace(' ', '-') }}">
@@ -110,7 +116,13 @@
                         <img src="{{ url_for('static', filename='image/' + (car.image_url if car.image_url else 'default.jpg')) }}" alt="Drive X Image" id="{{ car.name }}">
                         <div class="details">
                             <h4 id="{{ car.name }}">{{ car.name }}</h4>
-                            <p>{{ car.description }}</p>
+                            <p>{% set description_words = car.description.split(' ') %}
+                                {% if description_words|length > 4 %}
+                                {{ description_words[4:]|join(' ') }}...
+                                {% else %}
+                                {{ car.description }}
+                                {% endif %}
+                            </p>
                         </div>
                         <div class="ride-price">
                             <span class="original" id="price-{{ car.name | lower | replace(' ', '-') }}">

@@ -279,12 +279,11 @@ def route():
             else:
                 car['description'] = 'Premium vehicle with excellent comfort and safety features.'
         
-        # Price per km is 25tk, so we'll show that in the template
-        # The actual price will be calculated based on distance
+       
         car['price_per_km'] = 25.0
         if car.get('price') is None or car.get('price') == 0:
-            car['price'] = 0.0  # Will be calculated dynamically
-        
+            car['price'] = 0.0 
+            
         # Convert ObjectId to string for template
         car['_id'] = str(car['_id'])
         # Ensure pickup_point_id is string
@@ -449,8 +448,8 @@ def employee_dashboard():
     # Convert ObjectId to string and add id field for template compatibility
     for car in cars:
         car_id = str(car['_id'])
-        car['id'] = car_id  # Add id field for template compatibility
-        car['_id'] = car_id  # Also update _id to string
+        car['id'] = car_id 
+        car['_id'] = car_id  
         
         # Get pickup point name
         if 'pickup_point_id' in car and car['pickup_point_id']:
@@ -550,9 +549,7 @@ def select_car():
         session['plate_num'] = plate_num
         session['pickup'] = pickup
         session['dropoff'] = dropoff
-        
-        # Calculate distance using geocoding API (simplified - in production use proper distance calculation)
-        # For now, we'll calculate in payment route when we have pickup/dropoff coordinates
+
         
         return redirect(url_for('payment'))
     except Exception as e:
@@ -584,10 +581,6 @@ def payment():
             if not all([full_name, email, address, city, payment_method]):
                 flash('Please fill all required fields!', 'danger')
                 return redirect(url_for('payment'))
-            
-            # Process payment (mock payment gateway)
-            # In a real scenario, you would integrate with actual payment gateway here
-            # For now, we'll simulate a successful payment
             
             # Store booking in database
             booking_data = {
